@@ -1,0 +1,336 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-oak: var(--oak);
+  --color-oak-dark: var(--oak-dark);
+  --color-cocoa: var(--cocoa);
+  --color-cocoa-soft: var(--cocoa-soft);
+  --color-moss: var(--moss);
+  --color-moss-dark: var(--moss-dark);
+  --color-honey: var(--honey);
+  --color-honey-dark: var(--honey-dark);
+  --color-ember: var(--ember);
+  --color-berry: var(--berry);
+  --color-sky: var(--sky);
+  --color-dusk: var(--dusk);
+
+  --color-sky-1: var(--sky-1);
+  --color-sky-2: var(--sky-2);
+  --color-sky-3: var(--sky-3);
+  --color-sky-4: var(--sky-4);
+  --color-sky-5: var(--sky-5);
+
+  --font-heading: 'Pixelify Sans', sans-serif;
+  --font-body: 'DotGothic16', monospace;
+  --font-level: 'Press Start 2P', monospace;
+}
+
+@layer base {
+  :root,
+  [data-phase="golden"] {
+    --cream: #F6E9D2;
+    --cream-deep: #EAD7B5;
+    --oak: #B87B4B;
+    --oak-dark: #8E5A34;
+    --cocoa: #3B2A20;
+    --cocoa-soft: #6B5344;
+    --moss: #7FA35B;
+    --moss-dark: #5F8043;
+    --honey: #E9B44C;
+    --honey-dark: #C0912F;
+    --ember: #E27D4F;
+    --berry: #B84A5A;
+    --sky: #8CC0D6;
+    --dusk: #7C6DA0;
+
+    /* Scene Sky Bands (Golden Hour Dusk to Peach) */
+    --sky-1: #5B4372;
+    --sky-2: #7F587E;
+    --sky-3: #AB6873;
+    --sky-4: #D6865E;
+    --sky-5: #F1B27B;
+
+    /* Semantic UI fallbacks & mappings */
+    --bg-canvas: #F6E9D2;
+    --panel: #F6E9D2;
+    --panel-light: #FAF2E3;
+    --panel-dark: #EAD7B5;
+    --panel-border: #8E5A34;
+    --panel-border-light: #B87B4B;
+    --panel-border-dark: #3B2A20;
+    --accent: #E9B44C;
+    --accent-diamond: #8CC0D6;
+    --accent-grass: #7FA35B;
+    --accent-dirt: #8E5A34;
+    --text: #3B2A20;
+    --text-muted: #6B5344;
+    --shadow: #3B2A20;
+    --hud-bg: #8E5A34;
+
+    /* SceneClock CSS variables mapped to design tokens */
+    --clock-bg: rgba(59, 42, 32, 0.85);
+    --clock-fg: var(--cream);
+    --clock-border: var(--oak);
+    --font-heading: 'Pixelify Sans', sans-serif;
+  }
+
+  * {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--cocoa);
+    font-family: 'DotGothic16', monospace;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: none;
+    overflow-x: hidden;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--honey) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Typography Helpers */
+.font-pixel-heading {
+  font-family: 'Pixelify Sans', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-pixel-body {
+  font-family: 'DotGothic16', monospace;
+  font-size: 17px;
+}
+
+.font-pixel-level {
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* Stepped Pixel Notched Corners (4px grid) */
+.pixel-notched {
+  clip-path: polygon(
+    0 4px, 4px 4px, 4px 0,
+    calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+/* Hard warm-brown shadows */
+.pixel-box-shadow {
+  box-shadow: 4px 4px 0px var(--cocoa);
+}
+
+.pixel-box-shadow-sm {
+  box-shadow: 2px 2px 0px var(--cocoa);
+}
+
+.pixel-box-shadow-lg {
+  box-shadow: 6px 6px 0px var(--cocoa);
+}
+
+/* Wooden Panel Styles with Inner Highlight */
+.pixel-panel-frame {
+  background-color: var(--cream);
+  border: 4px solid var(--oak-dark);
+  outline: 2px solid var(--cocoa);
+  box-shadow: 4px 4px 0px var(--cocoa);
+  position: relative;
+}
+
+/* Wooden Sign Plate with Corner Nails */
+.pixel-sign-plate {
+  position: relative;
+  background-color: var(--cream);
+  border: 4px solid var(--oak-dark);
+  box-shadow: 4px 4px 0px var(--cocoa);
+}
+.pixel-sign-nail {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: var(--cocoa);
+  box-shadow: 1px 1px 0px var(--oak-dark);
+}
+
+/* Raised Block Button */
+.pixel-btn-block {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-style: solid;
+  border-width: 3px;
+  cursor: pointer;
+  transition: transform 0.05s steps(2);
+}
+
+.pixel-btn-block:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 0px transparent !important;
+}
+
+.pixel-btn-active:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 0px transparent !important;
+}
+
+/* Input Wells */
+.pixel-input-well {
+  background-color: var(--cream-deep);
+  color: var(--cocoa);
+  border: 2px solid var(--oak-dark);
+  box-shadow: inset 2px 2px 0px var(--cocoa-soft);
+  font-family: 'DotGothic16', monospace;
+}
+.pixel-input-well:focus {
+  outline: 3px solid var(--honey);
+  outline-offset: 1px;
+}
+
+/* Pixel Art Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream-deep);
+  border-left: 2px solid var(--oak-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--oak);
+  border: 2px solid var(--oak-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--oak-dark);
+}
+
+/* Pixel Animations (Stepped Timing Only) */
+@keyframes pixel-cloud-drift {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(400px); }
+}
+
+@keyframes pixel-flicker-2 {
+  0%, 100% { transform: scaleY(1); opacity: 0.95; }
+  50% { transform: scaleY(1.15) translateY(-2px); opacity: 1; }
+}
+
+@keyframes pixel-smoke-rise {
+  0% { transform: translate(0, 0); opacity: 0.9; }
+  33% { transform: translate(4px, -8px); opacity: 0.7; }
+  66% { transform: translate(8px, -16px); opacity: 0.4; }
+  100% { transform: translate(12px, -24px); opacity: 0; }
+}
+
+@keyframes pixel-firefly {
+  0%, 100% { opacity: 0.2; transform: translate(0, 0); }
+  25% { opacity: 1; transform: translate(4px, -4px); }
+  50% { opacity: 0.3; transform: translate(8px, 0); }
+  75% { opacity: 0.9; transform: translate(4px, 4px); }
+}
+
+@keyframes pixel-bob-2px {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes pixel-tick-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pixel-sign-swing {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes pixel-shimmer {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes pixel-screen-slide {
+  0% { transform: translateY(12px); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-pixel-drift {
+  animation: pixel-cloud-drift 40s steps(100) infinite;
+}
+
+.animate-pixel-flicker {
+  animation: pixel-flicker-2 0.35s steps(2) infinite;
+}
+
+.animate-pixel-smoke {
+  animation: pixel-smoke-rise 2.4s steps(4) infinite;
+}
+
+.animate-pixel-firefly {
+  animation: pixel-firefly 3s steps(4) infinite;
+}
+
+.animate-pixel-bob-2px {
+  animation: pixel-bob-2px 1.2s steps(2) infinite;
+}
+
+.animate-pixel-tick {
+  animation: pixel-tick-pop 0.16s steps(2) forwards;
+}
+
+.animate-pixel-swing {
+  animation: pixel-sign-swing 1.6s steps(2) infinite;
+  transform-origin: top center;
+}
+
+.animate-pixel-shimmer {
+  animation: pixel-shimmer 0.8s steps(2) infinite;
+}
+
+.animate-pixel-slide-in {
+  animation: pixel-screen-slide 0.2s steps(3) forwards;
+}
+
+/* Motion Preference & Visibility Controls */
+[data-motion="off"] *,
+@media (prefers-reduced-motion: reduce) {
+  .animate-pixel-drift,
+  .animate-pixel-flicker,
+  .animate-pixel-smoke,
+  .animate-pixel-firefly,
+  .animate-pixel-bob-2px,
+  .animate-pixel-swing,
+  .animate-pixel-shimmer,
+  .animate-pixel-slide-in,
+  .animate-pixel-tick {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+[data-motion="calm"] .animate-pixel-swing,
+[data-motion="calm"] .animate-pixel-slide-in {
+  animation: none !important;
+}
+
+/* Focus Mode: Enhanced readability for the selected scene clock time element */
+div#root:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) {
+  font-family: 'DotGothic16', 'Press Start 2P', monospace !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.15 !important;
+  font-variant-numeric: tabular-nums !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4) !important;
+}
+

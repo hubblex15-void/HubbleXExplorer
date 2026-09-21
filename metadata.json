@@ -1,0 +1,10 @@
+{
+  "name": "Tally Realm",
+  "description": "Pixel-art gamified personal activity tracker, quest log, and habit HUD.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
